@@ -62,10 +62,9 @@ Try:
 
 - ✅ Phase 0 — Project structure decided
 - ✅ Phase 1 — Backend + frontend built and verified working locally
-- ⬜ Phase 2 — Dockerize
-- ⬜ Phase 3 — Push to GitHub
-- ⬜ Phase 4 — AWS account + access setup
-- ⬜ Phase 5 — Terraform (create the EC2 server)
-- ⬜ Phase 6 — Ansible (configure server + deploy)
-- ⬜ Phase 7 — Verify live on AWS
-- ⬜ Phase 8 — Prepare faculty demo materials
+- ✅ Phase 2 — Dockerize
+- ✅ Phase 3 — Push to GitHub
+- ✅ Phase 4 — AWS account + access setup
+- ✅ Phase 5 — Terraform (create the EC2 server)
+- ✅ Phase 6 — Ansible (configure server + deploy)
+- ✅ Phase 7 — Verify live on AWS
