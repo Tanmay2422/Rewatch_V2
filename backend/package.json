@@ -1,0 +1,22 @@
+{
+  "name": "rewatch-backend",
+  "version": "1.0.0",
+  "description": "ReWatch - a personal media tracker (movies, shows, anime, books)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "prom-client": "^15.1.3"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReWatch — Stats</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">ReWatch</span>
+    <nav class="tabs">
+      <a href="index.html">Catalog</a>
+      <a href="stats.html" class="active">Stats</a>
+    </nav>
+    <div class="user-menu">
+      <span class="user-avatar" id="userAvatar"></span>
+      <span class="user-name" id="userName"></span>
+      <button class="ghost" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stat-grid" id="statGrid"></div>
+
+  <div class="panel">
+    <h2>Up next for you</h2>
+    <div class="suggestion-grid" id="suggestionGrid">Loading...</div>
+  </div>
+
+  <div class="panel">
+    <h2>Genre breakdown</h2>
+    <div id="genreBars"></div>
+  </div>
+
+  <div class="panel">
+    <h2>By status</h2>
+    <div id="statusBars"></div>
+  </div>
+</main>
+
+<script src="js/shared.js"></script>
+<script src="js/stats.js"></script>
+</body>
+</html>

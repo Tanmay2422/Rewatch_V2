@@ -1,0 +1,35 @@
+---
+- name: Deploy ReWatch + monitoring stack to EC2
+  hosts: rewatch
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        name: [git, docker.io, docker-compose-v2]
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Enable and start Docker
+      systemd: { name: docker, enabled: true, state: started }
+
+    - name: Clone / update ReWatch
+      git:
+        repo: https://github.com/Tanmay2422/Rewatch_V2.git
+        dest: /opt/rewatch
+        version: main
+        force: true
+
+    - name: Write .env (secrets are passed in, not committed)
+      copy:
+        dest: /opt/rewatch/.env
+        mode: '0600'
+        content: |
+          SESSION_SECRET={{ session_secret }}
+          OMDB_API_KEY={{ omdb_api_key | default('') }}
+          GRAFANA_PASSWORD={{ grafana_password | default('admin') }}
+
+    - name: Build and start the stack
+      command: docker compose up -d --build
+      args: { chdir: /opt/rewatch }
+      changed_when: true

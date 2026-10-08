@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReWatch — Log in</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <span class="brand">ReWatch</span>
+    <p class="auth-sub">log in to your catalog</p>
+
+    <div class="auth-error" id="authError"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="fLogin">Username or email</label>
+        <input type="text" id="fLogin" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="fPassword">Password</label>
+        <input type="password" id="fPassword" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="primary" id="submitBtn">Log in</button>
+    </form>
+
+    <p class="auth-switch">No account yet? <a href="signup.html" class="text-link" style="text-decoration:underline;">Sign up</a></p>
+    <p class="demo-hint">Just exploring? Use <strong>demo</strong> / <strong>demo1234</strong></p>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+  const form = document.getElementById('loginForm');
+  const errorBox = document.getElementById('authError');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+
+    try {
+      await api.login({
+        usernameOrEmail: document.getElementById('fLogin').value.trim(),
+        password: document.getElementById('fPassword').value
+      });
+      window.location.href = 'index.html';
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Log in';
+    }
+  });
+</script>
+</body>
+</html>

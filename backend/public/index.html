@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReWatch — Catalog</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">ReWatch</span>
+    <nav class="tabs">
+      <a href="index.html" class="active">Catalog</a>
+      <a href="stats.html">Stats</a>
+    </nav>
+    <div class="user-menu">
+      <span class="user-avatar" id="userAvatar"></span>
+      <span class="user-name" id="userName"></span>
+      <button class="ghost" id="logoutBtn">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search your catalog..." />
+    <button class="primary" id="openAddBtn">+ Add title</button>
+  </div>
+
+  <div class="toolbar" style="margin-top:-6px;">
+    <div class="chip-row" id="statusChips">
+      <span class="chip active" data-status="">All</span>
+      <span class="chip" data-status="want">Want</span>
+      <span class="chip" data-status="in_progress">Watching</span>
+      <span class="chip" data-status="finished">Finished</span>
+    </div>
+    <div class="chip-row" id="typeChips">
+      <span class="chip active" data-type="">Any type</span>
+      <span class="chip" data-type="movie">Movie</span>
+      <span class="chip" data-type="show">Show</span>
+      <span class="chip" data-type="anime">Anime</span>
+      <span class="chip" data-type="book">Book</span>
+    </div>
+  </div>
+
+  <div id="cardGrid" class="poster-grid"></div>
+  <div id="emptyState" class="empty-state" style="display:none;">
+    Nothing here yet. Add a title with the button above to start your catalog.
+  </div>
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h2 id="modalTitle">Add a title</h2>
+    <form id="entryForm">
+      <input type="hidden" id="entryId" />
+      <div class="field">
+        <label for="fTitle">Title</label>
+        <input type="text" id="fTitle" required placeholder="e.g. Spirited Away" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fType">Type</label>
+          <select id="fType" required>
+            <option value="movie">Movie</option>
+            <option value="show">TV Show</option>
+            <option value="anime">Anime</option>
+            <option value="book">Book</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fStatus">Status</label>
+          <select id="fStatus">
+            <option value="want">Want to watch/read</option>
+            <option value="in_progress">In progress</option>
+            <option value="finished">Finished</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fProgress">Progress (optional)</label>
+        <input type="text" id="fProgress" placeholder="e.g. Ep 4/12 or pg 120/300" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fRating">Rating (if finished)</label>
+          <select id="fRating">
+            <option value="">—</option>
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fGenres">Genres (comma separated)</label>
+          <input type="text" id="fGenres" placeholder="Sci-Fi, Drama" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="fNotes">Notes</label>
+        <textarea id="fNotes" placeholder="A quick thought or review..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="ghost" id="cancelBtn">Cancel</button>
+        <button type="submit" class="primary" id="saveBtn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="js/list.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReWatch — Sign up</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <span class="brand">ReWatch</span>
+    <p class="auth-sub">create your own catalog</p>
+    <div class="auth-error" id="authError"></div>
+    <form id="signupForm">
+      <div class="field">
+        <label for="fUsername">Username</label>
+        <input type="text" id="fUsername" required autocomplete="username" placeholder="letters, numbers, underscore" />
+      </div>
+      <div class="field">
+        <label for="fEmail">Email</label>
+        <input type="email" id="fEmail" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="fPassword">Password</label>
+        <input type="password" id="fPassword" required autocomplete="new-password" placeholder="at least 6 characters" />
+      </div>
+      <button type="submit" class="primary" id="submitBtn">Create account</button>
+    </form>
+    <p class="auth-switch">Already have an account? <a href="login.html" class="text-link" style="text-decoration:underline;">Log in</a></p>
+  </div>
+</div>
+<script src="js/shared.js"></script>
+<script>
+  const form = document.getElementById('signupForm');
+  const errorBox = document.getElementById('authError');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating...';
+    try {
+      await api.signup({
+        username: document.getElementById('fUsername').value.trim(),
+        email: document.getElementById('fEmail').value.trim(),
+        password: document.getElementById('fPassword').value
+      });
+      window.location.href = 'index.html';
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Create account';
+    }
+  });
+</script>
+</body>
+</html>
