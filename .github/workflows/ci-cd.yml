@@ -59,7 +59,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /opt/rewatch
-            git pull origin main
+            sudo git pull origin main
             sudo docker compose pull app
             sudo docker compose up -d
       - name: Smoke test
