@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: rewatch
-          image: rewatch:local        # for minikube; or ghcr.io/<user>/rewatch:latest
-          imagePullPolicy: IfNotPresent
+          image: ghcr.io/tanmay2422/rewatch:latest
+          imagePullPolicy: Always
           ports: [{ containerPort: 5000 }]
           env:
             - name: SESSION_SECRET
